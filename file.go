@@ -19,15 +19,25 @@ var getFileByName = make(map[string]*file, 32)
 
 var exist = make(map[string]int, 32)
 
+var enableUpload = false
+
 func loadFiles() {
-	for {
-		fmt.Print("> ")
-		line := strings.Trim(readLine(), `"`)
-		if line == "" || line == `\` || line == `/` {
-			continue
-		}
-		if err := add(line); err != nil {
-			fmt.Println(err)
+	for stdin.Scan() {
+		line := strings.Trim(stdin.Text(), `"`)
+		switch {
+		case line == "" || line == `\` || line == `/`:
+			// do nothing
+		case line == "enable upload":
+			enableUpload = true
+			os.Mkdir("upload", 0666)
+			fmt.Println("已开启上传功能")
+		case line == "disable upload":
+			enableUpload = false
+			fmt.Println("已关闭上传功能")
+		default:
+			if err := add(line); err != nil {
+				fmt.Println(err)
+			}
 		}
 	}
 }
