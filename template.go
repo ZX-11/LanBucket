@@ -10,7 +10,15 @@ const tmpl = `
 
 <body style="background-color: #3E606F; text-align: center;">
     <h1 style="color: #FCFFF5;">LanBucket</h1>
-    <div style="border-radius: 10px; padding: 10px; margin: 0 auto; max-width: 900px; min-height: 450px; background: #FCFFF5;">
+    <div style="border-radius: 10px; padding: 20px; margin: 0 auto; max-width: 900px; min-height: 450px; background: #FCFFF5;">
+        {{ if .enableUpload }}
+        <div style="text-align: left;">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <p><input type="file" name="选择文件" required="required"></p>
+                <p><input type="submit" value="上传"></p>
+            </form>
+        </div>
+        {{ end }}
         <table border="0" width="100%">
             <tr>
                 <td width="80%">文件</td>
