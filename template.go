@@ -1,7 +1,6 @@
 package main
 
-const tmpl = `
-<html>
+const tmpl = `<html>
 
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -27,12 +26,12 @@ const tmpl = `
             {{ range $k, $v := .files }}
             <tr>
                 <td><a href="/file?name={{ $v.Name }}">{{ $v.Name }}</a></td>
-                <td>{{ $v.Size }}B</td>
+                <td>{{ $v.Size }}</td>
             </tr>
             {{ end }}
         </table>
     </div>
-    <p style="color: #FCFFF5;">Copyright © 2020 <strong>ZX</strong></p>
+    <p style="color: #FCFFF5;">Copyright © 2021 <strong>ZX</strong></p>
 </body>
 
 </html>
