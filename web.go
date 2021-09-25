@@ -1,6 +1,7 @@
 package main
 
 import (
+	_ "embed"
 	"html/template"
 	"log"
 	"net"
@@ -9,6 +10,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 )
+
+//go:embed index.html
+var tmpl string
 
 var localAddr = func() net.IP {
 	conn, err := net.Dial("udp", "8.8.8.8:80")
@@ -30,8 +34,18 @@ func webService() {
 			"enableUpload": settings["EnableUpload"],
 		})
 	})
-	r.GET("/file", func(c *gin.Context) {
-		name := c.Query("name")
+	r.GET("/file/:name", func(c *gin.Context) {
+		name := c.Param("name")
+		if file, ok := findFile[name]; ok {
+			c.File(file.Addr)
+		} else {
+			c.JSON(http.StatusNotFound, gin.H{
+				"error": "Not Found",
+			})
+		}
+	})
+	r.GET("/dl/:name", func(c *gin.Context) {
+		name := c.Param("name")
 		if file, ok := findFile[name]; ok {
 			c.FileAttachment(file.Addr, file.Name)
 		} else {
@@ -64,3 +78,19 @@ func webService() {
 	})
 	r.Run(port)
 }
+
+// func TlsHandler() gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		secureMiddleware := secure.New(secure.Options{
+// 			SSLRedirect: true,
+// 			SSLHost:     "localhost:8080",
+// 		})
+// 		err := secureMiddleware.Process(c.Writer, c.Request)
+
+// 		if err != nil {
+// 			return
+// 		}
+
+// 		c.Next()
+// 	}
+// }
