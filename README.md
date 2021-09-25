@@ -6,7 +6,8 @@
 拖拽添加文件或文件夹（文件夹为递归添加文件夹内文件）
 
 下载链接：
-[Github下载](https://github.com/ZX-11/LanBucket/releases/download/v1.0/LanBucket_Windows_x64_1.0.exe)
+[Github下载](https://github.com/ZX-11/LanBucket/releases/download/v1.5/LanBucket_Windows_x64_1.5.exe)
+[备用下载](https://github.91chifun.workers.dev/https://github.com/ZX-11/LanBucket/releases/download/v1.5/LanBucket_Windows_x64_1.5.exe)
 
-![](http://zxxx.cf/usr/uploads/2021/04/1086533582.webp)
-![](http://zxxx.cf/usr/uploads/2021/04/2558667352.webp)
+![](https://cdn.jsdelivr.net/gh/ZX-11/LanBucket@main/screenshots/1.webp)
+![](https://cdn.jsdelivr.net/gh/ZX-11/LanBucket@main/screenshots/2.webp)
