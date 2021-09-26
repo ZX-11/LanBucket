@@ -11,5 +11,6 @@
 
 ![](https://raw.githubusercontent.com/ZX-11/LanBucket/main/screenshots/1.webp)
 ![](https://raw.githubusercontent.com/ZX-11/LanBucket/main/screenshots/2.webp)
-![](https://cdn.jsdelivr.net/gh/ZX-11/LanBucket@main/screenshots/1.webp)
+<!-- ![](https://cdn.jsdelivr.net/gh/ZX-11/LanBucket@main/screenshots/1.webp)
 ![](https://cdn.jsdelivr.net/gh/ZX-11/LanBucket@main/screenshots/2.webp)
+ -->
