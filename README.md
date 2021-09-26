@@ -9,8 +9,5 @@
 [Github下载](https://github.com/ZX-11/LanBucket/releases/download/v1.6/LanBucket_Windows_x64_1.6.exe)
 [备用下载](https://github.91chifun.workers.dev/https://github.com/ZX-11/LanBucket/releases/download/v1.6/LanBucket_Windows_x64_1.6.exe)
 
-![](https://raw.githubusercontent.com/ZX-11/LanBucket/main/screenshots/1.webp)
-![](https://raw.githubusercontent.com/ZX-11/LanBucket/main/screenshots/2.webp)
-<!-- ![](https://cdn.jsdelivr.net/gh/ZX-11/LanBucket@main/screenshots/1.webp)
+![](https://cdn.jsdelivr.net/gh/ZX-11/LanBucket@main/screenshots/1.webp)
 ![](https://cdn.jsdelivr.net/gh/ZX-11/LanBucket@main/screenshots/2.webp)
- -->
