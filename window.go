@@ -10,7 +10,7 @@ import (
 )
 
 type TableModel struct {
-	walk.SortedReflectTableModelBase
+	walk.ReflectTableModelBase
 }
 
 func (m *TableModel) Items() interface{} { return files }
@@ -18,6 +18,7 @@ func (m *TableModel) Items() interface{} { return files }
 var tableModel = new(TableModel)
 var _ walk.ReflectTableModel = new(TableModel)
 var fileUpload = make(chan struct{}, 8)
+var leAddr *walk.LineEdit
 
 func init() {
 	go func() {
@@ -49,14 +50,15 @@ var mainWindow = MainWindow{
 					Layout: HBox{},
 					Children: []Widget{
 						LineEdit{
-							Text:     fmt.Sprintf("http://%v%v", localAddr, port),
+							AssignTo: &leAddr,
+							Text:     webAddr(),
 							ReadOnly: true,
 						},
 						PushButton{
 							Text:    "浏览",
 							MaxSize: Size{60, 20},
 							OnClicked: func() {
-								cmd := exec.Command(`cmd`, `/c`, `start`, fmt.Sprintf("http://%v%v", localAddr, port))
+								cmd := exec.Command(`cmd`, `/c`, `start`, webAddr())
 								cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
 								cmd.Run()
 							},
@@ -121,6 +123,29 @@ var mainWindow = MainWindow{
 							Name:  "EnableUpload",
 							Text:  "开启",
 							Value: true,
+						},
+					},
+				},
+				RadioButtonGroupBox{
+					DataMember: "EnableIPv6",
+					Title:      "使用IPv6地址",
+					Layout:     HBox{},
+					Buttons: []RadioButton{
+						RadioButton{
+							Name:  "DisableIPv6",
+							Text:  "关闭",
+							Value: false,
+							OnClicked: func() {
+								leAddr.SetText(webAddr())
+							},
+						},
+						RadioButton{
+							Name:  "EnableIPv6",
+							Text:  "开启",
+							Value: true,
+							OnClicked: func() {
+								leAddr.SetText(webAddr())
+							},
 						},
 					},
 				},

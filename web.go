@@ -2,6 +2,7 @@ package main
 
 import (
 	_ "embed"
+	"fmt"
 	"html/template"
 	"log"
 	"net"
@@ -14,14 +15,31 @@ import (
 //go:embed index.html
 var tmpl string
 
-var localAddr = func() net.IP {
+var ipv4Addr = func() string {
 	conn, err := net.Dial("udp", "8.8.8.8:80")
 	if err != nil {
-		return []byte{127, 0, 0, 1}
+		return "127.0.0.1"
 	}
 	defer conn.Close()
-	return conn.LocalAddr().(*net.UDPAddr).IP
+	return conn.LocalAddr().(*net.UDPAddr).IP.String()
 }()
+
+var ipv6Addr = func() string {
+	conn, err := net.Dial("udp", "[2001:4860:4860::8888]:80")
+	if err != nil {
+		return "[::1]"
+	}
+	defer conn.Close()
+	return "[" + conn.LocalAddr().(*net.UDPAddr).IP.String() + "]"
+}()
+
+func webAddr() string {
+	if settings["EnableIPv6"].(bool) {
+		return fmt.Sprintf("http://%v%v", ipv6Addr, port)
+	} else {
+		return fmt.Sprintf("http://%v%v", ipv4Addr, port)
+	}
+}
 
 func webService() {
 	gin.SetMode(gin.ReleaseMode)

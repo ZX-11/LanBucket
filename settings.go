@@ -14,6 +14,7 @@ const (
 
 var settings = map[string]interface{}{
 	"EnableUpload": false,
+	"EnableIPv6":   false,
 }
 
 func autoSet(cmd string) error {
